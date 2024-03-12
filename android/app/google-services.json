@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "961590488389",
+    "project_id": "texter-4bfcf",
+    "storage_bucket": "texter-4bfcf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:961590488389:android:1fe0d7fec8d2ac0db8e22c",
+        "android_client_info": {
+          "package_name": "com.example.texter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpbF-xqQqHSsxaRNyzv0Zb2O-JiF4wpog"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
