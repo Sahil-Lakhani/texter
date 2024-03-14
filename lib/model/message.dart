@@ -12,10 +12,10 @@ class Message {
     required this.senderEmail,
     required this.reciverId,
     required this.message,
-    required this.timestamp, required String receiverId,
+    required this.timestamp,
   });
-   
-   Map<String, dynamic> toMap() {
+
+  Map<String, dynamic> toMap() {
     return {
       'senderId': senderId,
       'senderEmail': senderEmail,
