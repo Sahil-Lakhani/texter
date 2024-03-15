@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:texter/components/chat_bubble.dart';
 import 'package:texter/components/my_text_field.dart';
 import 'package:texter/services/chat/chat_service.dart';
 
@@ -44,6 +45,7 @@ class _ChatPageState extends State<ChatPage> {
           ),
           //user input
           _buildMessageInput(),
+      const SizedBox(height: 20,)
         ],
       ),
     );
@@ -80,34 +82,56 @@ class _ChatPageState extends State<ChatPage> {
 
     return Container(
       alignment: alignment,
-      child: Column(
-        children: [
-          Text(data['senderEmail']),
-          Text(data['message']),
-        ],
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment:
+              (data['senderId'] == _firebaseAuth.currentUser!.uid)
+                  ? CrossAxisAlignment.end
+                  : CrossAxisAlignment.start,
+          mainAxisAlignment:
+              (data['senderId'] == _firebaseAuth.currentUser!.uid)
+                  ? MainAxisAlignment.end
+                  : MainAxisAlignment.start,
+          children: [
+            Text(
+              data['senderEmail'],
+              style: const TextStyle(
+                fontSize: 14,
+              ),
+            ),
+            const SizedBox(
+              height: 9,
+            ),
+            ChatBubble(message: data['message']),
+          ],
+        ),
       ),
     );
   }
 
 //the message input item (format)
   Widget _buildMessageInput() {
-    return Row(
-      children: [
-        Expanded(
-          child: MyTextField(
-            controller: _messageController,
-            hintText: 'Enter Message',
-            obscureText: false,
+    return Padding(
+      padding: const EdgeInsets.only(left: 10.0),
+      child: Row(
+        children: [
+          Expanded(
+            child: MyTextField(
+              controller: _messageController,
+              hintText: 'Enter Message',
+              obscureText: false,
+            ),
           ),
-        ),
-        IconButton(
-          onPressed: sendMessage,
-          icon: const Icon(
-            Icons.send,
-            size: 40,
+          IconButton(
+            onPressed: sendMessage,
+            icon: const Icon(
+              Icons.send,
+              size: 40,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
